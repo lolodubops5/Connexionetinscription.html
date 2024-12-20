@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription et Connexion</title>
+    <script>
+        // Compte de base "Admin"
+        const utilisateurs = [
+            { nom: "Admin", motDePasse: "22012013" }
+        ];
+
+        // Fonction d'inscription
+        function inscrire() {
+            const nom = document.getElementById("nomInscription").value;
+            const motDePasse = document.getElementById("motDePasseInscription").value;
+
+            // Vérifie si l'utilisateur existe déjà
+            if (utilisateurs.find(user => user.nom === nom)) {
+                alert("Le nom d'utilisateur existe déjà.");
+                return;
+            }
+
+            // Ajoute l'utilisateur
+            utilisateurs.push({ nom: nom, motDePasse: motDePasse });
+            alert("Inscription réussie !");
+        }
+
+        // Fonction de connexion
+        function connecter() {
+            const nom = document.getElementById("nomConnexion").value;
+            const motDePasse = document.getElementById("motDePasseConnexion").value;
+
+            // Vérifie les informations de connexion
+            const utilisateur = utilisateurs.find(user => user.nom === nom && user.motDePasse === motDePasse);
+            if (utilisateur) {
+                alert("Connexion réussie !");
+                // Redirige vers YouTube après la connexion
+                window.location.href = "https://www.youtube.com";
+            } else {
+                alert("Nom d'utilisateur ou mot de passe incorrect.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Inscription et Connexion</h1>
+
+    <!-- Formulaire d'inscription -->
+    <h2>Inscription</h2>
+    <form action="javascript:void(0);">
+        <label for="nomInscription">Nom d'utilisateur:</label>
+        <input type="text" id="nomInscription" required><br><br>
+        <label for="motDePasseInscription">Mot de passe:</label>
+        <input type="password" id="motDePasseInscription" required><br><br>
+        <button type="submit" onclick="inscrire()">S'inscrire</button>
+    </form>
+
+    <hr>
+
+    <!-- Formulaire de connexion -->
+    <h2>Connexion</h2>
+    <form action="javascript:void(0);">
+        <label for="nomConnexion">Nom d'utilisateur:</label>
+        <input type="text" id="nomConnexion" required><br><br>
+        <label for="motDePasseConnexion">Mot de passe:</label>
+        <input type="password" id="motDePasseConnexion" required><br><br>
+        <button type="submit" onclick="connecter()">Se connecter</button>
+    </form>
+</body>
+</html>
+
